@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -57,7 +58,7 @@ public class ProductController {
     @ApiResponse(responseCode = "400", description = "Bad request: check productDto object",content = { @Content(schema = @Schema()) })
     @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })
     @PostMapping("/products")
-    public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto){
+    public ResponseEntity<Product> saveProduct(@Valid @RequestBody ProductDto productDto){
         Product productAdded =  productService.saveProduct(productDto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
