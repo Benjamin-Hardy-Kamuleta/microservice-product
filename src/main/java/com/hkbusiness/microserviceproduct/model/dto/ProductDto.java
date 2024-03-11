@@ -1,7 +1,10 @@
 package com.hkbusiness.microserviceproduct.model.dto;
 
+import lombok.Data;
+
 import java.time.LocalDate;
 
+@Data
 public class ProductDto {
 
     private String productName;

@@ -1,17 +1,10 @@
 package com.hkbusiness.microserviceproduct.dao;
 
 import com.hkbusiness.microserviceproduct.model.Product;
-import com.hkbusiness.microserviceproduct.model.dto.ProductDto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+@Repository
 public interface ProductDao extends JpaRepository<Product, String> {
-    List<Product> fetchAllProducts();
-    Product findByProductCode(String productCode);
-    Product saveProduct(ProductDto productDto);
-    Product updateProduct(Product product);
 
-    boolean deleteProductByCode(String productCode);
-    boolean deleteProduct(Product product);
 }
