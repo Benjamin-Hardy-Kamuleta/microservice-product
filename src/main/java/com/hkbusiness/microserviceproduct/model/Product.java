@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,12 +27,8 @@ public class Product {
     private String productDescription;
     @NotBlank(message = "productMadeIn cannot be blank")
     private String productMadeIn;
-    @NotBlank(message = "please provide productExpDate ")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "yyy-MM-dd")
+    @NotNull(message = "provide a notNull productExpDate in format yyyy-MM-dd ")
     private LocalDate productExpDate;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @JsonFormat(pattern = "yyy-MM-dd")
     private LocalDate productManufDate;
     private String makeProductCode(){
         StringBuilder code= new StringBuilder();
