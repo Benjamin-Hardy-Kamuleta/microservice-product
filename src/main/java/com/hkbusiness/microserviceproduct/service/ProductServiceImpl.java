@@ -6,8 +6,8 @@ import com.hkbusiness.microserviceproduct.model.Product;
 import com.hkbusiness.microserviceproduct.model.dto.ProductDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -24,8 +24,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findByProductCode(String productCode) throws ProductNotFoundException {
-        return productDao.findById(productCode).orElseThrow(
-                ()->new ProductNotFoundException("Product with code "+productCode+" is not found"));
+        Product product = productDao.findByProductCode(productCode);
+        if (Objects.isNull(product)){
+            throw new ProductNotFoundException("Product with code "+productCode+" is not found");
+        }
+        return product;
     }
 
     @Override
