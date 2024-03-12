@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product findByProductCode(String productCode) {
+    public Product findByProductCode(String productCode) throws ProductNotFoundException {
         return productDao.findById(productCode).orElseThrow(
                 ()->new ProductNotFoundException("Product with code "+productCode+" is not found"));
     }
